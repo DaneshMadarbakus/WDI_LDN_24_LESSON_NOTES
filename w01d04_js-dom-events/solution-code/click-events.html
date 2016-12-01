@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <title>Click Events</title>
+  <head></head>
+  <body>
+    <button onclick="alert('Hello WDI!');">I'm an inline button!</button>
+    <button id="click">click</button>
+    <button id="dblclick">dblclick</button>
+    <button id="mousedown_mouseup">Mousedown Mouseup</button>
+    <button id="add_element">Add</button>
+
+    <script type="text/javascript">
+
+      document.getElementById("click").addEventListener("click", function(e) {
+        alert("I've been clicked!");
+      });
+
+      // jQuery
+      // $("#click").onclick(function() {
+      //   alert("I've been clicked!");
+      // });
+
+      document.getElementById("dblclick").addEventListener("dblclick", function(e) {
+        alert("I've been dblclicked !");
+      });
+
+      // $("#dblclick").dblclick(function() {
+      //   alert("I've been double clicked!")
+      //    });
+
+      document.getElementById("add_element").addEventListener("click", function() {
+          var b = document.createElement("button");
+          var btext = document.createTextNode("Added Live");
+
+          b.appendChild(btext);
+          b.addEventListener("click", function() {
+            alert("I've been clicked and I've been dynamically addded!")
+          });
+
+          document.body.appendChild(b);
+      });
+
+    //   $('#add_element').click(function(){
+    // $('body').append('<button class="live_added">Added Live</button>')
+    // });
+
+      document.getElementById("mousedown_mouseup").addEventListener("mousedown", function(e) {
+        console.log("mousedown on button");
+      });
+
+      // $("#mousedown_mouseup").mousedown(function(e) {
+      //   console.log("mousedown on button");
+      // });
+
+      document.getElementById("mousedown_mouseup").addEventListener("mouseup", function(e) {
+        console.log("mouseup on button");
+      });
+
+      //combined
+      // $("#mousedown_mouseup").mousedown(function(e) {
+      //   console.log("mousedown on button");
+      // }).mouseup(function(e) {
+      //   console.log("mouseup on button");
+      // });
+
+    </script>
+  </body>
+</html>
