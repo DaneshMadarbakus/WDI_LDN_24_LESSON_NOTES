@@ -1,0 +1,57 @@
+body {
+	background: url('../images/bg.jpg');
+	background-size: cover;
+}
+
+#calculator {
+	width: 355px;
+	margin: 200px auto;
+	background: #464646;
+	padding: 5px;
+	border: 2px solid #252525;
+	border-radius: 5px;
+}
+
+#firstNumber, #secondNumber, #operator, #submit {
+	background: #363636;
+	color: white;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 18px;
+	padding: 5px;
+	margin: 10px;
+	border: 1px solid #252525;
+	border-radius: 5px;
+}
+
+#firstNumber, #secondNumber {
+	width: 20px;
+	height: 20px;
+}
+
+#answer {
+	width: 322px;
+	height: 20px;
+	background: #363636;
+	color: white;
+	text-align: right;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 18px;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 10px auto;
+	border: 1px solid #252525;
+}
+
+h1 {
+	width: 322px;
+	height: 20px;
+	background: #cccccc;
+	color: #252525;
+	text-align: center;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 18px;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 10px auto;
+	border: 1px solid #252525;
+}
