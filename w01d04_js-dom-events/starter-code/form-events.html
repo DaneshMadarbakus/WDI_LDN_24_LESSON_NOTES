@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <title>Form Events</title>
+  <head></head>
+  <head>
+    <style>
+      body{ margin-top:50px;}
+      #hover_it{width: 500px;height:500px;background-color: red}
+    </style>
+  </head>
+  <body>
+    <form id="form">
+      <input id="textInput">
+      <select id="selectInput">
+        <option>----</option>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+      <input type="radio" name="radioInput" class="radioInput">
+      <input type="radio" name="radioInput" class="radioInput">
+      <input type="radio" name="radioInput" class="radioInput">
+
+      <input type="submit" value="Submit Input"/>
+    </form>
+
+    <script type="text/javascript">
+
+      // document.getElementById('textInput').addEventListener("focus", function(e) {
+      //   console.log("Focussed on input");
+      // });
+      //
+      // document.getElementById('textInput').addEventListener("blur", function(e) {
+      //   console.log("Leaved the input!");
+      // });
+      //
+      // document.getElementById('selectInput').addEventListener("change", function(e) {
+      //   console.log("Select changed!");
+      // });
+      //
+      // var radios = document.getElementsByClassName("radioInput")
+      //
+      // for( var i=0; i<radios.length; i++ ) {
+      //   radios[i].addEventListener("change", function(e) {
+      //     console.log('Radio selected');
+      //   });
+      // }
+      //
+      // document.getElementById('form').addEventListener("submit", function(e) {
+      //   alert("Form submitted");
+      //   console.log("Form submitted");
+      //   return false;
+      // });
+
+    </script>
+  </body>
+</html>
