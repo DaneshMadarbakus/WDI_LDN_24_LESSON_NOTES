@@ -29,10 +29,10 @@ Game.setupGame = function() {
   // Create the grid
   var grid = document.createElement('ul');
   body.appendChild(grid);
-  for (var i = 0; i < Game.gridBase*Game.gridBase; i++) {
+  for (var i = 0; i < this.gridBase*this.gridBase; i++) {
     var square = document.createElement('li');
-    square.style.width  = Game.width / Game.gridBase + 'px';
-    square.style.height = Game.width / Game.gridBase + 'px';
+    square.style.width  = this.width / this.gridBase + 'px';
+    square.style.height = this.width / this.gridBase + 'px';
     grid.appendChild(square);
   }
 
@@ -103,7 +103,7 @@ Game.checkForWin = function(){
 };
 
 Game.start = function() {
-  Game.setupGame();
+  this.setupGame();
 };
 
-document.addEventListener('DOMContentLoaded', Game.start);
+document.addEventListener('DOMContentLoaded', Game.start.bind(Game));
