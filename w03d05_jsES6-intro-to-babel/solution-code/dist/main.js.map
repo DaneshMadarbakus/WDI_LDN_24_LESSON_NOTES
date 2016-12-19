@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/main.js"],"names":[],"mappings":";;AAAA,IAAI,MAAM,cAAV;AACA,QAAQ,GAAR,uBAAgC,GAAhC","file":"main.js","sourcesContent":["let log = \"Hello world!\";\nconsole.log(`So classic, much ${log}`);"]}
