@@ -1,0 +1,15 @@
+<main>
+  <h1>All Foods</h1>
+  <% for(var i=0; i<foods.length; i++) { %>
+    <div>
+      <h2><%= foods[i]['name'] %></h2></li>
+      <p><strong>Yumminess:</strong> <%= foods[i]['yumminess'] %></p>
+      <a class="btn" href="/foods/<%= foods[i].id %>/edit">Edit</a>
+      <form method="post" action="/foods/<%= foods[i].id %>">
+        <input type="hidden" name="_method" value="delete">
+        <input class="btn" type="submit" value="Delete">
+      </form>
+    </div>
+  <% } %>
+  </ul>
+</main>

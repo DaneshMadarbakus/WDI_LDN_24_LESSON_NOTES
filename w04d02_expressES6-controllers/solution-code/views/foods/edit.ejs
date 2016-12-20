@@ -1,0 +1,16 @@
+<h1>Edit Food</h1>
+<form method="post" action="/foods/<%= food.id %>">
+  <input type="hidden" name="_method" value="put">
+
+  <label for="food_name">Name</label>
+  <input type="text" name="food[name]" id="food_name" value="<%= food.name %>">
+
+  <label for="food_yumminess">Yumminess</label>
+  <select name="food[yumminess]" id="food_yumminess" value="<%= food.yumminess %>">
+    <% ["meh", "Sure!", "nice..", "omg", "quite"].forEach(function(yumminess){ %>
+      <option value="<%= yumminess %>" <%= food.yumminess == yumminess ? "selected" : "" %>><%= yumminess %></option>
+    <% }); %>
+  </select>
+
+  <input class="btn" type="submit" value="Update">
+</form>

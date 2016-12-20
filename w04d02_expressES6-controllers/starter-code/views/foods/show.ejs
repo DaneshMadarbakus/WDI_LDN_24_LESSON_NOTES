@@ -1,0 +1,7 @@
+<h1>Food: <%= food.name %></h1>
+<p><strong>Yumminess:</strong> <%= food.yumminess %></p>
+<a class="btn" href="/foods/<%= food.id %>/edit">Edit</a>
+<form method="post" action="/foods/<%= food.id %>">
+  <input type="hidden" name="_method" value="delete">
+  <input class="btn" type="submit" value="Delete">
+</form>

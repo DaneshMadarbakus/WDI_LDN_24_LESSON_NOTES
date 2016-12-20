@@ -1,0 +1,16 @@
+<h1>Add Food</h1>
+<form method="post" action="/foods">
+  <label for="food_name">Name</label>
+  <input type="text" name="food[name]" id="food_name">
+
+  <label for="food_yumminess">Yumminess</label>
+  <select name="food[yumminess]" id="food_yumminess">
+    <option value="meh">meh</option>
+    <option value="Sure!">Sure!</option>
+    <option value="Depending">Depending...</option>
+    <option value="omg">omg</option>
+    <option value="quite">quite</option>
+  </select>
+
+  <input class="btn" type="submit" value="Add">
+</form>
