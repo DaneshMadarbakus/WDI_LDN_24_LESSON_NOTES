@@ -1,0 +1,10 @@
+<h1>All Restaurants</h1>
+<ul class="list-unstyled">
+  <% restaurants.forEach(restaurant => { %>
+    <li>
+      <ul class="list-unstyled">
+        <li><a href="/restaurants/<%= restaurant._id %>"><h4><%= restaurant.name %></h4></a></li>
+      </ul>
+    </li>
+  <% }) %>
+</ul>
