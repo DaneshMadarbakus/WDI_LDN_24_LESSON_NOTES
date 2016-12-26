@@ -1,7 +1,11 @@
-const Movie = require('../models/movie');
+const Movie    = require('../models/movie');
+const Director = require('../models/director');
 
 function moviesNew(req, res) {
-  return res.render('movies/new', { error: null });
+  Director.find({}, (err, directors) => {
+    if (err) return res.render('movies/new', { error: err.message });
+    return res.render('movies/new', { error: null, directors });
+  });
 }
 
 function moviesCreate(req, res) {
@@ -20,7 +24,10 @@ function moviesIndex(req, res) {
 }
 
 function moviesShow(req, res) {
-  Movie.findById(req.params.id, (err, movie) => {
+  Movie
+  .findById(req.params.id)
+  .populate(['director'])
+  .exec((err, movie) => {
     if (err) return res.render('movies/show', { movie: {}, error: 'Something went wrong.' });
     if (!movie) return res.render('movies/show', { movie: {}, error: 'No movie was found!' });
     return res.render('movies/show', { movie, error: null });
@@ -31,7 +38,10 @@ function moviesEdit(req, res) {
   Movie.findById(req.params.id, (err, movie) => {
     if (err) return res.render('movies/edit', { movie: {}, error: 'Something went wrong.' });
     if (!movie) return res.render('movies/edit', { movie: {}, error: 'No movie was found!' });
-    return res.render('movies/edit', { movie, error: null });
+    Director.find({}, (err, directors) => {
+      if (err) return res.render('movies/new', { error: err.message });
+      return res.render('movies/edit', { movie, directors, error: null });
+    });
   });
 }
 
@@ -50,7 +60,7 @@ function moviesUpdate(req, res) {
 
     movie.save((err, movie) => {
       if (err) return res.render('movies/edit', { movie: {}, error: 'Something went wrong.' });
-      return res.render('movies/show', { movie, error: null });
+      return res.redirect(`/movies/${movie._id}`);
     });
   });
 }

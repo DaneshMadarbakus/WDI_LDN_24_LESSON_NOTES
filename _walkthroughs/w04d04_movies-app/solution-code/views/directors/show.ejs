@@ -2,12 +2,11 @@
   <div class="alert alert-danger text-center" role="alert"><%= error %></div>
 <% } %>
 <section class="container">
-  <h1><%= movie.title %></h1>
-  <p><%= movie.description %></p>
+  <h1><%= director.name %></h1>
   <ul class="list-inline">
-    <li><a class="btn btn-primary" href="/movies/<%= movie._id %>/edit">Edit</a></li>
+    <li><a class="btn btn-primary" href="/directors/<%= director._id %>/edit">Edit</a></li>
     <li>
-      <form action="/movies/<%= movie._id %>" method="post">
+      <form action="/directors/<%= director._id %>" method="post">
         <input type="hidden" name="_method" value="delete">
         <button class="btn btn-danger">Delete</button>
       </form>

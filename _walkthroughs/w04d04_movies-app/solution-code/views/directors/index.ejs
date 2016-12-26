@@ -1,0 +1,23 @@
+<section class="container">
+  <h1>All Directors</h1>
+  <% directors.forEach((director, i, original) => { %>
+    <% if (i === 0) { %>
+      <div class="row">
+    <% } else if (i !== 0 && i % 3 === 0) { %>
+      </div>
+      <div class="row">
+    <% }; %>
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <!-- <img src="..." alt="..."> -->
+          <div class="caption">
+            <h3><%= director.name %></h3>
+            <p><a href="/directors/<%= director._id %>" class="btn btn-primary" role="button">View</a></p>
+          </div>
+        </div>
+      </div>
+    <% if (i === original.length-1) { %>
+      </div>
+    <% }; %>
+  <% }); %>
+</section>

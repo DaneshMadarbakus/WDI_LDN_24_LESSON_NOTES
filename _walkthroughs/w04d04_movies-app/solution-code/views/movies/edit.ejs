@@ -14,6 +14,14 @@
       <label for="movie_description">Description</label>
       <textarea class="form-control" id="movie_description" name="movie[description]" placeholder="Description"><%= movie.description %></textarea>
     </div>
+    <div class="form-group">
+      <label for="movie_director">Director</label>
+      <select class="form-control" id="movie_director" name="movie[director]">
+        <% directors.forEach(director => { %>
+          <option value="<%= director._id %>" <%= movie.director.toString() === director._id.toString() ? "selected" : "" %>><%= director.name %></option>
+        <% }) %>
+      </select>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </section>
