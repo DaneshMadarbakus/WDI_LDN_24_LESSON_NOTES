@@ -102,7 +102,7 @@ const databaseUrl  = `mongodb://localhost/${databaseName}`
 
 mongoose.connect(databaseUrl, () => {
   return console.log(`Connected to db: ${databaseUrl}`);
-}
+});
 ```
 
 Great! Now before we move on, let's test everything is working by serving our express app on the `port` we specified.
@@ -208,7 +208,7 @@ const databaseUrl    = `mongodb://localhost/${databaseName}`;
 
 mongoose.connect(databaseUrl, () => {
   return console.log(`Connected to db: ${databaseUrl}`);
-}
+});
 
 app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/views`);
@@ -409,13 +409,13 @@ Now, let's install the CSS framework we're going to use, Bootstrap:
 $ bower install bootstrap --save
 ```
 
-Downloading Bootstrap will also install it's dependency jQuery. Now, let's make a link to these files in the `index.html` so that we have just installed inside our `layout.erb`.
+Downloading Bootstrap will also install it's dependency jQuery. Now, let's make a link to these files in our `layout.ejs` file.
 
 ```html
 <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <script src="/jquery/dist/jquery.min.js" charset="utf-8"></script>
-<script src="/bootstrap/dist/js/bootstrap.min.js" charset="utf-8">
+<script src="/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
 ```
 
 Now, let's test that everything is working by ensuring that `nodemon` is working and refreshing the browser.
@@ -474,7 +474,7 @@ Next, we can include our partial inside the `layout.erb` at the top of the `<bod
 
 ```html
 <body>
-  <%- include ./application/header %>
+  <%- include ./application/_header %>
   <%- body %>
 </body>
 ```
@@ -501,9 +501,9 @@ And then include it inside our `layout.ejs` file:
 
 ```html
 <body>
-  <%- include ./application/header %>
+  <%- include ./application/_header %>
   <%- body %>
-  <%- include ./application/footer %>
+  <%- include ./application/_footer %>
 </body>
 ```
 
@@ -513,11 +513,11 @@ Let's also add a `<main>` tag around the `<%- body %>` as this is where the main
 
 ```html
 <body>
-  <%- include ./application/header %>
+  <%- include ./application/_header %>
   <main>
     <%- body %>
   </main>
-  <%- include ./application/footer %>
+  <%- include ./application/_footer %>
 </body>
 ```
 
