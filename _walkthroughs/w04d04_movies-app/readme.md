@@ -1654,6 +1654,7 @@ $ npm install gulp-babel --save-dev
 $ npm install browser-sync --save-dev
 $ npm install gulp-clean-css --save-dev
 $ npm install gulp-sass --save-dev
+$ npm install gulp-nodemon --save-dev
 $ npm install gulp-uglify --save-dev
 ```
 
