@@ -21,11 +21,11 @@ competencies: Server Applications
 *Before this lesson, students should already be able to:*
 
 - Must understand what JSON is
-- Should be able to make an MVC Express app 
+- Should be able to make an MVC Express app
 
 ## Express API Intro (10 mins)
 
-So far we've used Express only to render `text/html`. However, Express as a "minimal" framework is really great to make APIs. 
+So far we've used Express only to render `text/html`. However, Express as a "minimal" framework is really great to make APIs.
 
 The majority of modern APIs now render JSON so that they can then manipulate the data programmatically - often using JavaScript.
 
@@ -38,7 +38,7 @@ Express perhaps is most widely used as part of a stack called the "MEAN" stack:
 - **M**ongo
 - **E**xpress
 - **A**ngular
-- **N**ode 
+- **N**ode
 
 This is a popular collection of frameworks that developers use to get modern websites developed quickly. Express here is used as an API.
 
@@ -62,7 +62,7 @@ Next, we need to initialize `npm` with a package.json:
 $ npm init
 ```
 
-You can pretty much hit `<enter>` for the defaults, but it might be useful to choose the `<entry point:>` to be `app.js`. 
+You can pretty much hit `<enter>` for the defaults.
 
 - **Install packages**
 
@@ -85,17 +85,17 @@ $ npm install express body-parser morgan --save
 
 We don't need to install `ejs` or `express-ejs-layouts` because we aren't going to render any views.
 
-- **Create app.js**
+- **Create index.js**
 
-Next, let's create an `app.js` file:
+Next, let's create an `index.js` file:
 
 ```bash
-$ touch app.js
+$ touch index.js
 ```
 
 - **Setup & run express**
 
-Inside app.js, let's setup an express application.
+Inside index.js, let's setup an express application.
 
 ```js
 const express      = require('express');
@@ -103,7 +103,9 @@ const app          = express();
 const port         = process.env.PORT || 3000;
 
 // listen on port 3000
-app.listen(port, console.log(`listening on port: ${port}`));
+app.listen(port, () => {
+  console.log(`Listening on port: ${port}`);
+});
 ```
 
 - **Setup morgan for better logging**
@@ -120,12 +122,14 @@ const morgan       = require('morgan');
 app.use(morgan('dev'));
 
 // listen on port 3000
-app.listen(port, console.log(`listening on port: ${port}`));
+app.listen(port, () => {
+  console.log(`Listening on port: ${port}`);
+});
 ```
 
 - **Setup body-parser**
 
-Next, we need to setup body-parser so that Express can read the body of HTTP requests. 
+Next, we need to setup body-parser so that Express can read the body of HTTP requests.
 
 We want to set this up slightly differently than we have before as we want to be able to accept JSON.
 
@@ -141,13 +145,15 @@ app.use(morgan('dev'));
 
 // Setup body-parser to read HTTP body
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended:true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // listen on port 3000
-app.listen(port, console.log(`listening on port: ${port}`));
+app.listen(port, () => {
+  console.log(`Listening on port: ${port}`);
+});
 ```
 
-- **Connect to the database** 
+- **Connect to the database**
 
 Lastly, let's setup mongoose to connect to our database.
 
@@ -171,9 +177,9 @@ You can now run the website to test that it works. There are currently no routes
 
 ## Create a model - (15 mins)
 
-The next step we want to do is to create a model for our app. Let's create a model for an object! 
+The next step we want to do is to create a model for our app. Let's create a model for an object!
 
-We're going to use shoes! 
+We're going to use shoes!
 
 ```bash
 $ mkdir models
@@ -183,27 +189,27 @@ $ touch models/shoe.js
 Now inside this model, we need to create a mongoose model for a shoe.
 
 ```js
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const shoeSchema = new mongoose.Schema({
-  brand:    { type: String },
-  color:    { type: String },
-  laced:    { type: Boolean },
+  brand: { type: String },
+  color: { type: String },
+  laced: { type: Boolean },
   material: { type: String },
-  price:    { type: Number }
+  price: { type: Number }
 }, {
   timestamps: true
 });
 
 // Ensure that the number is saved as an integer by returned as a float
 shoeSchema.path('price')
-.get(value => (value/100).toFixed(2))
-.set(value => value*100);
+  .get(value => (value/100).toFixed(2))
+  .set(value => value*100);
 
 // Ensure that the object is sent as JSON
-shoeSchema.set('toJSON', { getters: true, virtuals: false });
+shoeSchema.set('toJSON', { getters: true, setters: true, virtuals: false });
 
-module.exports = mongoose.model("Shoe", shoeSchema);
+module.exports = mongoose.model('Shoe', shoeSchema);
 ```
 
 #### Get & Set?!
@@ -212,25 +218,25 @@ We're using a `.get` and `.set` method to ensure that the price is saved as an i
 
 #### toJSON
 
-We can customise our JSON output when the documents toJSON method is called. We need to specify the `getters: true` to enable the `get` method to be called when the JSON is requested. 
+We can customise our JSON output when the documents toJSON method is called. We need to specify the `getters: true` to enable the `get` method to be called when the JSON is requested.
 
 [Virtuals](http://mongoosejs.com/docs/api.html#schema_Schema-virtual) are document properties that you can get and set but that do not get persisted to MongoDB. Mongoose assigns each of your schemas an `id` virtual getter by default which returns the documents `_id` field cast to a string, or in the case of ObjectIds, its hexString.
 
 ## Make a controller & routes - (15 mins)
 
-We're going to seperate our controller logic from our routing logic to keep things a little cleaner. We don't have to do this, but it's good practise to do this.
+We're going to separate our controller logic from our routing logic to keep things a little cleaner. We don't have to do this, but it's good practise to do this.
 
 ```bash
 $ mkdir controllers
-$ touch controllers/shoesController.js
+$ touch controllers/shoes.js
 $ mkdir config
 $ touch config/routes.js
 ```
 
 Inside our controller, we need to require our model:
 
-```bash
-const Shoe = require("../models/shoe");
+```js
+const Shoe = require('../models/shoe');
 ```
 
 And then create a function that uses mongoose methods to create a shoe.
@@ -238,30 +244,30 @@ And then create a function that uses mongoose methods to create a shoe.
 _Type out the code and then go through carefully_.
 
 ```js
-const Shoe = require("../models/shoe");
+const Shoe = require('../models/shoe');
 
 function shoesCreate(req, res) {
   Shoe.create(req.body.shoe, (err, shoe) => {
     if (err) return res.status(500).json({ success: false, message: err });
     if (!shoe) return res.status(500).json({ success: false, message: "Please send the correct information to create a shoe." });
-    return res.status(201).json({ shoe });
+    return res.status(201).json(shoe);
   });
 }
 ```
 
-- **res.status()** The method `.status()` allows us to manually add a status code to our HTTP response. We "can" set the wrong status code if we want but this is obviously bad practise. 
+- **res.status()** The method `.status()` allows us to manually add a status code to our HTTP response. We "can" set the wrong status code if we want but this is obviously bad practise.
 - **.json()** `res.send` and `res.json` are identical when an object or array is passed but `res.json()` will also convert non-objects, such as null and undefined, which are not valid JSON.
 
 Lastly, we need to export the function:
 
 ```js
-const Shoe = require("../models/shoe");
+const Shoe = require('../models/shoe');
 
 function shoesCreate(req, res) {
   Shoe.create(req.body.shoe, (err, shoe) => {
     if (err) return res.status(500).json({ success: false, message: err });
     if (!shoe) return res.status(500).json({ success: false, message: "Please send the correct information to create a shoe." });
-    return res.status(201).json({ shoe });
+    return res.status(201).json(shoe);
   });
 }
 
@@ -275,20 +281,20 @@ module.exports = {
 Next, we need to setup the route handler for this action. We're going to do this inside our `config/routes.js` file.
 
 ```js
-const express = require("express");
+const express = require('express');
 const router  = express.Router();
 
-const shoesController = require("../controllers/shoesController");
+const shoes = require("../controllers/shoes");
 
-router.route("/shoes")
- .post(shoesController.create);
+router.route('/shoes')
+ .post(shoes.create);
 
 module.exports = router;
 ```
 
 > **Note:** We're using the chainable `.route` method as this will be cleaner with more routes.
 
-Next need to require this routes file in `app.js`.
+Next need to require this routes file in `index.js`.
 
 We're going to ask express to "use" our routes and we're going to namespace our api with routes beginning with `/API`:
 
@@ -309,12 +315,14 @@ app.use(morgan('dev'));
 
 // Setup body-parser to read HTTP body
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended:true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', routes);
 
 // listen on port 3000
-app.listen(port, console.log(`listening on port: ${port}`));
+app.listen(port, () => {
+  console.log(`Listening on port: ${port}`);
+});
 ```
 
 Great! We've done a bit of coding now without really being able to test what we've typed. This is generally not good practise. Let's now test what we've done.
@@ -324,7 +332,7 @@ Great! We've done a bit of coding now without really being able to test what we'
 Using an API client (or cURL) let's make a HTTP POST request to `http://localhost:3000/api/shoes` with the data of:
 
 ```json
-{ 
+{
   "shoe": {
     "brand":  "Nike",
     "color":  "Black",
@@ -364,7 +372,7 @@ function shoesIndex(req, res) {
   Shoe.find((err, shoes) => {
     if (err) return res.status(500).json({ success: false, message: err });
     if (!shoes) return res.status(500).json({ success: false, message: "No shoes found" });
-    return res.status(200).json({ shoes });
+    return res.status(200).json(shoes);
   });
 }
 ```
@@ -381,9 +389,9 @@ module.exports = {
 Now in our `routes.js` file, let's setup this route:
 
 ```js
-router.route("/shoes")
-  .post(shoesController.create)
-  .get(shoesController.index);
+router.route('/shoes')
+  .post(shoes.create)
+  .get(shoes.index);
 ```
 
 You can now test this using Insomnia making a `GET` request to `http://localhost:3000`.
@@ -408,7 +416,7 @@ Your task is to write the controller functions for the rest of the restful route
 
 It's important to understand the difference between rendering `text/html` and rendering `application/json` as a response for your HTTP requests.
 
-It's also really important to understand the power of an API. 
+It's also really important to understand the power of an API.
 
 - What is `res.status()`?
 - What the difference between `res.send()` and `res.json()`?

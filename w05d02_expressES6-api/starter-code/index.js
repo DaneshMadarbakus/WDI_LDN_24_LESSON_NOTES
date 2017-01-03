@@ -4,7 +4,6 @@ const port           = process.env.PORT || 3000;
 const morgan         = require('morgan');
 const bodyParser     = require('body-parser');
 const mongoose       = require('mongoose');
-const routes         = require('./config/routes');
 
 const databaseUrl = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/express-api';
 mongoose.connect(databaseUrl);
@@ -14,11 +13,9 @@ app.use(morgan('dev'));
 
 // Setup body-parser to read HTTP body
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended:true }));
-
-app.use('/api', routes);
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // listen on port 3000
 app.listen(port, () => {
-  console.log("listening on port 3000");
+  console.log(`Listening on port: ${port}`);
 });
