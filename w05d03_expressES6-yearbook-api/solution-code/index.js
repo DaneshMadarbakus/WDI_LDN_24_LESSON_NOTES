@@ -8,7 +8,7 @@ const app         = express();
 const port        = process.env.PORT || 4000;
 
 // Setup database
-const databaseURL = process.env.PORT || 'mongodb://localhost:27017/yearbook';
+const databaseURL = process.env.MONGODB_URI || 'mongodb://localhost:27017/yearbook';
 mongoose.connect(databaseURL);
 
 // Require routes

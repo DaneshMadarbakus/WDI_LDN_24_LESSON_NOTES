@@ -1,0 +1,15 @@
+{
+  "name": "nosql-mongoose-bcrypt",
+  "version": "1.0.0",
+  "description": "A lesson to encrypt passwords with bcrypt and mongoose.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "mongoose": "4.1.1"
+  }
+}
