@@ -1,0 +1,19 @@
+{
+  "name": "gulpness",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "author": "alexpchin <alex@alexchin.co.uk>",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^6.2.0",
+    "gulp-print": "^2.0.1",
+    "postcss-cssnext": "^2.9.0",
+    "postcss-import": "^9.0.0",
+    "postcss-nested": "^1.0.0"
+  }
+}

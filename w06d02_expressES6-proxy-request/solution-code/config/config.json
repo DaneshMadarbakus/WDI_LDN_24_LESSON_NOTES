@@ -1,0 +1,4 @@
+{
+  "db": "mongodb://localhost/my-weather",
+  "port": 3000
+}

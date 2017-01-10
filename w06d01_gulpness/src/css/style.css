@@ -1,0 +1,8 @@
+@import "random";
+
+body {
+  h1 {
+    background: red;
+    border-radius: 2px;
+  }
+}
