@@ -2,6 +2,7 @@ $(init);
 
 function init(){
   const $main = $('main');
+
   $.get('http://localhost:3000/api/places').done(data => {
     data.forEach(place => {
       $.get(`http://localhost:3000/api/places/${place.name}`).done(data => {
@@ -14,7 +15,7 @@ function init(){
               ${place.nickname} is ${data.temperature} degrees with ${data.skytext}
             </div>
           </div>
-        `);
+          `);
       });
     });
   });
