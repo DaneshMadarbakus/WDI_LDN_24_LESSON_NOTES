@@ -1,0 +1,7 @@
+<h2>All Criminals</h2>
+<ul id="criminals">
+  <li ng-repeat="criminal in criminals.all track by $index">
+    <strong>{{criminal.name}}</strong> <em>{{criminal.location}}</em> <span class="status {{criminal.status | lowercase }}">{{criminal.status | uppercase}}</span>
+    <button ui-sref="crinimalsShow({ id: criminal._id})">View</button>
+  </li>
+</ul>

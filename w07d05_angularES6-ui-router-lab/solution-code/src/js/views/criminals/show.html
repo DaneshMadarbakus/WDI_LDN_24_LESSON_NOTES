@@ -1,0 +1,3 @@
+<h2>{{ criminals.criminal.name }}</h2>
+<span class="status {{criminals.criminal.status | lowercase }}">{{criminals.criminal.status | uppercase}}</span>
+<button class="delete" ng-click="criminals.delete(criminal)">Delete</button>

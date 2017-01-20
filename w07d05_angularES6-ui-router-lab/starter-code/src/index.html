@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="infamousCriminals">
+<head>
+  <meta charset="UTF-8">
+  <title>Infamous Criminals</title>
+  <!-- inject:js -->
+  <!-- endinject -->
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+<body ng-controller="CriminalsCtrl as criminals">
+  <h1>Infamous Criminals</h1>
+  <section>
+    <ul id="criminals">
+      <li ng-repeat="criminal in criminals.all" data-id="{{criminal._id}}">
+        <strong>{{criminal.name}}</strong> <em>{{criminal.location}}</em> <span class="status {{criminal.status | lowercase }}">{{criminal.status | uppercase}}</span>
+        <button class="delete" ng-click="criminals.delete(criminal)">X</button>
+      </li>
+    </ul>
+    <form id="newCriminal" ng-submit="criminals.create()">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" ng-model="criminals.newCriminal.name" placeholder="Prof. Moriarty">
+      </div>
+      <div>
+        <label for="location">Location:</label>
+        <input type="text" id="location" ng-model="criminals.newCriminal.location" placeholder="Reichenbach Falls, CH">
+      </div>
+      <div>
+        <label for="status">Status:</label>
+        <select id="status" ng-model="criminals.newCriminal.status">
+          <option value="" disabled>- - Please Select One - -</option>
+          <option value="Alive">Alive</option>
+          <option value="Dead">Dead</option>
+          <option value="Unknown" selected>Unknown</option>
+        </select>
+      </div>
+      <div>
+        <input type="submit" value="Add Criminal">
+      </div>
+    </form>
+  </section>
+</body>
+</html>

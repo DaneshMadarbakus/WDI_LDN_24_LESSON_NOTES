@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+	<head>
+		<meta charset="utf-8">
+		<title>To Do Or Not To Do</title>
+    <base href="/" />
+    <!-- inject:js -->
+    <!-- endinject -->
+    <!-- inject:css -->
+    <!-- endinject -->
+	</head>
+
+	<body ng-controller="ToDosCtrl as todos">
+		<header>
+			<h1>YOU'VE GOT {{ todos.todosRemaining().length }} THINGS TO DO!</h1>
+			<h4>{{ todos.todosCompleted().length }} things completed | {{ todos.todosRemaining().length }} things remaining</h4>
+		</header>
+    <nav class="tabs">
+      <a ui-sref-active="active" ui-sref="home">List</a>
+      <a ui-sref-active="active" ui-sref="archive">Archive</a>
+    </nav>
+		<main ui-view></main>
+	</body>
+</html>
