@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="tictactoe" ng-strict-di>
+  <head>
+    <meta charset="utf-8">
+    <title>TicTacToe</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body ng-controller="MainCtrl as main">
+    <h1>Angular TicTacToe</h1>
+    <h2 ng-if="main.message">{{ main.message }}</h2>
+    <ul>
+      <li
+        ng-repeat="square in main.squares track by $index"
+        ng-click="main.move($index)"
+        ng-class="square">
+        {{ square }}
+      </li>
+    </ul>
+    <button ng-click="main.reset()">Reset</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="js/app.js" charset="utf-8"></script>
+  </body>
+</html>
