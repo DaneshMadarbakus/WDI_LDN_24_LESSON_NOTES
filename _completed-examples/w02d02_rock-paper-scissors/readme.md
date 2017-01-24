@@ -4,14 +4,6 @@ WDI
 ======
 ## Rock, Paper, Scissors
 
-### Core Competencies:
-
-- Core Competency #1
-- Core Competency #2
-
-<br>
----
-
 ###Learning Objectives:
 
 - Practise using closures

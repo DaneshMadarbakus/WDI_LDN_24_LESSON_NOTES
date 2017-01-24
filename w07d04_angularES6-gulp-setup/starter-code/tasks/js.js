@@ -14,7 +14,7 @@ const config           = require('../package').gulp;
 
 const fetchVendorJs = () => {
   return gulp.src(bowerFiles(config.selectors.js))
-    .pipe(concat(config.dest.js));
+    .pipe(concat(config.vendor.js));
 };
 
 const validateLocalJs = () => {
@@ -32,17 +32,18 @@ const fetchLocalJs = () => {
 };
 
 const buildJs = () => {
-  const vendorJs = fetchVendorJs();
-  const localJs  = fetchLocalJs();
-
-  return eventStream.merge(vendorJs, localJs)
-    .pipe(concat(config.output.js))
-    .pipe(sourcemaps.init())
-    .pipe(gulpIf(global.production, uglify()))
-    .pipe(gulpIf(global.production, rename({ suffix: '.min' })))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(config.dest.js))
-    .pipe(gulpIf(!global.production, browserSync.stream()));
+  return eventStream.merge(
+    fetchVendorJs(),
+    fetchLocalJs()
+  )
+  .pipe(order([config.vendor.js, config.selectors.js]))
+  .pipe(concat(config.output.js))
+  .pipe(sourcemaps.init())
+  .pipe(gulpIf(global.production, uglify()))
+  .pipe(gulpIf(global.production, rename({ suffix: '.min' })))
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest(config.dest.js))
+  .pipe(gulpIf(!global.production, browserSync.stream()));
 };
 
 gulp.task('build-js', buildJs);
