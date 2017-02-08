@@ -1,0 +1,20 @@
+<!DOCTYPE>
+<html lang='en'>
+  <head>
+    <title>My website</title>
+    <link rel='stylesheet' href='/style.css'>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/sports'>Sports</a></li>
+        <li><a href='/weather'>Weather</a></li>
+        <li><a href='/gossip'>Gossip</a></li>
+        <li><a href='/celebrity'>Celebrity</a></li>
+      </ul>
+    </nav>
+    <h1><%= @title %></h1>
+    <%= yield %>
+  </body>
+</html>
