@@ -1,0 +1,96 @@
+<h1>View Helpers In Rails</h1>
+
+<h2>Link Helpers</h2>
+<%= link_to "Go Home", root_path %>
+<!-- <a href="/">Go Home</a> -->
+
+<%= link_to 'Google', 'http://google.co.uk', data: { confirm: 'Are you sure?' } %>
+<!-- <a data-confirm="Are you sure?" href="http://google.co.uk">Google</a> -->
+
+<h2>Form Helpers</h2>
+<%= form_tag('/home') do %>
+  <%= text_field_tag 'input_id' %><br />
+  <%= text_area_tag 'input_textarea' %><br />
+  <%= submit_tag 'Save' %>
+<% end %>
+<!-- <form accept-charset="UTF-8" action="/home" method="post"><div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="+MVio5GxpTTvIbikRzvaJiPJJfCqFcIRfnhWEVoX8Dk=" /></div>
+  <input id="input_id" name="input_id" type="text" /><br />
+  <textarea id="input_textarea" name="input_textarea">
+</textarea><br />
+  <input name="commit" type="submit" value="Save" />
+</form> -->
+
+<h2>Number Helpers</h2>
+<%= number_to_currency(1234567890.50) %>
+<!-- £1,234,567,890.50 -->
+
+<%= number_to_human(1234) %>
+<!-- "1.23 Thousand" -->
+
+<%= number_to_human(12345) %>                          
+<!-- "12.3 Thousand" -->
+
+<%= number_to_human(1234567) %>
+<!-- "1.23 Million" -->
+
+<%= number_to_human(1234567890) %>
+<!-- "1.23 Billion" -->
+
+<%= number_to_human(1234567890123) %>
+<!-- "1.23 Trillion" -->
+
+<%= number_to_human(1234567890123456) %>
+<!-- "1.23 Quadrillion" -->
+
+<%= number_to_human(1234567890123456789) %>
+<!-- "1230 Quadrillion" -->
+
+<%= number_to_human(489939, :precision => 2) %>
+<!-- "490 Thousand" -->
+
+<%= number_to_human_size(1234567890) %>
+<!-- "1.15 GB" -->
+
+<h2>Date Helpers</h2>
+<% from_time = Time.now %>
+<%= distance_of_time_in_words(from_time, from_time + 50.minutes) %>
+<!-- "about 1 hour" -->
+
+<h2>Text Helpers</h2>
+<%= pluralize(1, 'person') %>
+<!-- "1 person" -->
+
+<%= pluralize(2, 'person') %>
+<!-- "2 people" -->
+
+<%= pluralize(3, 'person', 'users') %>
+<!-- "3 users" -->
+
+<%= truncate("A long time ago, in a Galaxy far, far away.") %>
+<!-- A long time ago, in a Galax... -->
+
+<%= truncate("A long time ago, in a Galaxy far, far away.", separator: ' ') %> 
+<!-- A long time ago, in a... -->
+
+<h2>Tag Helpers</h2>
+<%= tag("br") %>
+<!-- <br /> -->
+
+<%= tag("div", :data => {:name => 'Stephen', :city_state => %w(Chicago IL)}) %>
+<!-- <div data-city-state="[&quot;Chicago&quot;,&quot;IL&quot;]" data-name="Stephen" /> -->
+
+<%= tag("input", :type => 'text', :disabled => true) %>
+<!-- <input disabled="disabled" type="text" /> -->
+
+<%= tag("input", {:type => 'text', :disabled => true}) %>
+<!-- <input disabled="disabled" type="text" /> -->
+
+<%= content_tag(:div, "Hello world!") %>
+<!-- <div>Hello world!</div> -->
+
+<%= content_tag :div, :class => "strong" do %>
+  Hello world!
+<% end %>
+<!-- <div class="strong">
+ Hello world!
+</div> -->
