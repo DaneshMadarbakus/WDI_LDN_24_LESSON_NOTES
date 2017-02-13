@@ -1,0 +1,27 @@
+<%= form_for(moon) do |f| %>
+  <% if moon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(moon.errors.count, "error") %> prohibited this moon from being saved:</h2>
+
+      <ul>
+      <% moon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :planet_id %>
+    <%= f.collection_select :planet_id, Planet.all, :id, :name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

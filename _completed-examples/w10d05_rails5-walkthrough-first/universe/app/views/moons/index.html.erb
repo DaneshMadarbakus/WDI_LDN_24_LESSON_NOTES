@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Moons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Planet</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @moons %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Moon', new_moon_path %>

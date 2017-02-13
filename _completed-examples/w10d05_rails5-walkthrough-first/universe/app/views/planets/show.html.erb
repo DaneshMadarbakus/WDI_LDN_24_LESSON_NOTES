@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @planet.name %>
+</p>
+
+<p>
+  <strong>Distance from sun:</strong>
+  <%= @planet.distance_from_sun %>
+</p>
+
+<p>
+  <strong>Mass:</strong>
+  <%= @planet.mass %>
+</p>
+
+<p>
+  <strong>Rings:</strong>
+  <%= @planet.rings %>
+</p>
+
+<p>
+  <strong>Life:</strong>
+  <%= @planet.life %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Planet</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @planet.moons %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_planet_path(@planet) %> |
+<%= link_to 'Back', planets_path %>

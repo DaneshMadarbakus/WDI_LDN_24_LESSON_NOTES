@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @moon.name %>
+</p>
+
+<p>
+  <strong>Planet:</strong>
+  <%= link_to @moon.planet.name, @moon.planet %>
+</p> 
+
+<%= link_to 'Edit', edit_moon_path(@moon) %> |
+<%= link_to 'Back', moons_path %>

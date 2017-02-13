@@ -1,0 +1,9 @@
+<li>
+  <ul>
+    <li><%= moon.name %></li>
+    <li><%= moon.planet.name %></li>
+    <li><%= link_to 'Show', moon %></li>
+    <li><%= link_to 'Edit', edit_moon_path(moon) %></li>
+    <li><%= link_to 'Destroy', moon, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  </ul>
+</li>
