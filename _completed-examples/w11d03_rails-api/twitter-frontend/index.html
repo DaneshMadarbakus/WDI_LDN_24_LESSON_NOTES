@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="test">
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+  </head>
+  <body ng-controller="main as main">
+    {{ 1 + 1 }}
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script>
+      angular.module("test", [])
+      .controller('main', ['$http', function($http){
+        $http({
+          method: 'get',
+          url: 'http://localhost:3000/api/users'
+        }).then(data => {
+          console.log(data);
+        }, err => {
+          console.error(err);
+        });
+      }]);
+    </script>
+  </body>
+</html>
