@@ -259,3 +259,4 @@ Tip: You can have several before_action per controller.
 - What are cookies?
 - Explain how to set cookies in a Rails application.
 - Why is authentication important for Web apps?
+-

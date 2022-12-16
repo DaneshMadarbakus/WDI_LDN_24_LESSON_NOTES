@@ -676,3 +676,4 @@ We'll be looking at how to integrate this with Angular in later lessons.
 - [Building the perfect Rails 5 API](http://sourcey.com/building-the-prefect-rails-5-api-only-app/)
 - [How to make Rails 5 API Only](https://hashrocket.com/blog/posts/how-to-make-rails-5-api-only)
 - [Building a super simple Rails API](http://www.thegreatcodeadventure.com/building-a-super-simple-rails-api/)
+
